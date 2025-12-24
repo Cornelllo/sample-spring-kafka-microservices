@@ -10,9 +10,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <sonar.moduleKey>${artifactId}</sonar.moduleKey>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
     </properties>
 
 </project>

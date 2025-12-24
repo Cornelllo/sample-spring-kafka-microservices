@@ -76,7 +76,7 @@ public class OrderApp {
                         orderManageService::confirm,
                         JoinWindows.of(Duration.ofSeconds(10)),
                         StreamJoined.with(Serdes.Long(), orderSerde, orderSerde))
-                .peek((k, o) -> LOG.info("Output: {}", o))
+                .peek((k, order) -> LOG.info("Output: {}",  order))
                 .to("orders");
 
         return stream;

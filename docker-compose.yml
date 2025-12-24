@@ -10,7 +10,7 @@ services:
   order-service:
     image: sample-spring-kafka-microservices/order-service:1.0-SNAPSHOT
     ports:
-      - "8080"
+      - "8080:8080"
     links:
       - broker
     environment:

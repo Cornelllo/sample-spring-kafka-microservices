@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service
+  namespace: sample-spring-kafka-microservices
+  labels:
+    app: payment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payment-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app
+    spec:
+      containers:
+      - env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
+        image: sample-spring-kafka-microservices/payment-service:1.0-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: payment-service
+      restartPolicy: Always

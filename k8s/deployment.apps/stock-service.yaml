@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-service
+  namespace: sample-spring-kafka-microservices
+  labels:
+    app: stock-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: stock-service
+    spec:
+      containers:
+      - env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: docker
+        image: sample-spring-kafka-microservices/stock-service:1.0-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        name: stock-service
+      restartPolicy: Always

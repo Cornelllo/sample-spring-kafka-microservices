@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broker
+  namespace: sample-spring-kafka-microservices
+  labels:
+    app: broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broker
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: broker
+    spec:
+      containers:
+      - name: broker
+        image: moeenz/docker-kafka-kraft:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: KRAFT_CONTAINER_HOST_NAME
+          value: broker
+        ports:
+        - containerPort: 9092
+        - containerPort: 9093
+      restartPolicy: Always
